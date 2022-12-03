@@ -1,6 +1,5 @@
 <?php
 $url = explode('/',$_SERVER['REQUEST_URI']);
-
 ?>
 <header class="header">
     <div class="header__top">
@@ -53,8 +52,7 @@ $url = explode('/',$_SERVER['REQUEST_URI']);
                         <li class="<?=($url[1]=='shops')?'active':''?>"><a href="{{route('shops.index')}}">Shop</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
-                                <li class="<?=($url[1]=='shop_details')?'active':''?>"><a href="#">Shop Details</a></li>
-                                <li class="<?=($url[1]=='shop_carts')?'active':''?>"><a href="./shoping-cart.html">Shoping Cart</a></li>
+                                <li class="<?=($url[1]=='shop_carts')?'active':''?>"><a href="{{route('shop-carts')}}">Shoping Cart</a></li>
                                 <li class="<?=($url[1]=='check_out')?'active':''?>"><a href="{{route('checkout')}}">Check Out</a></li>
                                 <li class="<?=($url[1]=='blog_details')?'active':''?>"><a href="./blog-details.html">Blog Details</a></li>
                             </ul>

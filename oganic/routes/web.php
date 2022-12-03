@@ -32,6 +32,9 @@ Route::prefix('shops')->name('shops.')->group(function (){
     Route::get('/',[ProductsController::class,'index'])->name('index');
     Route::get('/shop-details/{id}',[ProductsController::class,'show'])->name('show');
 });
+Route::get('shop_carts',function (){
+    return view('shops.shopping-cart');
+})->name('shop-carts');
 Route::get('/{cat_id}',[ProductsController::class,'loadCategory'])->name('load-category');
 
 //
