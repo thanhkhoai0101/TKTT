@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\Controller;
@@ -14,11 +15,12 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\CategoriesController::class,'index']);
+Route::get('/', [CategoriesController::class,'index']);
+//Route::get('/{id}', [CategoriesController::class,'show']);
 
-Route::get('/index', function () {
-    return view('layouts.index');
-});
+//Route::get('/index/{?id}', function () {
+//    return view('index');
+//});
 Route::get('/users/checkout', function () {
     return view('users.checkouts.checkout');
 })->name('checkout');

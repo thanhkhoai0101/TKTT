@@ -19,15 +19,16 @@ class ProductsController extends Controller
         $this->table=new Product();
     }
 
-    public function loadCategory($cat_id){
-        $products_Type = DB::select('select * from products where categoryId='.$cat_id);
-        return view('index',['products_type'=>$products_Type]);
-    }
+
+//    public function loadCategory($cat_id){
+//        $products_Type = DB::select('select * from products where categoryId='.$cat_id);
+//        return view('index',['products_type'=>$products_Type]);
+//    }
 
     public function index()
     {
         $products=Product::paginate(12);
-        $productsSale = DB::select('select * from products');
+        $productsSale = DB::select('select * from products where categoryId=1');
 
         return view('shops.shop-gird',['products'=>$products,'productsSale'=>$productsSale]);
     }

@@ -54,7 +54,8 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-
+//        $products = DB::select('select * from products where categoryId ='.$id);
+//        return view('partial.categories');
     }
 
     /**

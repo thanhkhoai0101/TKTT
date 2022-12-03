@@ -1,5 +1,5 @@
 <!-- Categories Section Begin -->
-@include('partial.categories')
+
 <!-- Categories Section End -->
 
 <!-- Featured Section Begin -->
