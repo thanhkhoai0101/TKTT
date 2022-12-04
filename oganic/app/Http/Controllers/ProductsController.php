@@ -25,12 +25,24 @@ class ProductsController extends Controller
 //        return view('index',['products_type'=>$products_Type]);
 //    }
 
-    public function index()
+    public function index(Request $request)
     {
-        $products=Product::paginate(12);
+
+        if($request['cat_id']==""){
+            $products=Product::paginate(12);
+        }else{
+            $products=Product::where('categoryId','=',$request['cat_id'])->paginate(12);
+        }
         $productsSale = DB::select('select * from products where categoryId=1');
 
-        return view('shops.shop-gird',['products'=>$products,'productsSale'=>$productsSale]);
+        $categories=DB::table('categories')->get();
+
+
+        return view('shops.shop-gird',[
+            'products'=>$products,
+            'productsSale'=>$productsSale,
+            'categories'=>$categories,
+        ]);
     }
 
     /**

@@ -1,6 +1,13 @@
 <?php
 $url = explode('/',$_SERVER['REQUEST_URI']);
-
+if(str_contains($url[1],'?')){
+    $url = explode('?',$url[1]);
+}
+else{
+    $url[0]=$url[1];
+}
+if ($url[0]=='')
+$url[0]='Home';
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -11,7 +18,7 @@ $url = explode('/',$_SERVER['REQUEST_URI']);
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | <?=$url[1]?></title>
+    <title>Ogani | <?=$url[0]?></title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -35,6 +42,9 @@ $url = explode('/',$_SERVER['REQUEST_URI']);
     }
     a:hover{
         color: green !important;
+    }
+    #page svg{
+        width: 50px;
     }
 </style>
 <body>

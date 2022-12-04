@@ -1,5 +1,10 @@
 <?php
 $url = explode('/',$_SERVER['REQUEST_URI']);
+if (str_contains($url[1],'?')){
+    $url=explode('?',$url[1]);
+    $url[1]=$url[0];
+}
+
 ?>
 <header class="header">
     <div class="header__top">

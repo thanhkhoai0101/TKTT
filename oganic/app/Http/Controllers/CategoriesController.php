@@ -19,10 +19,14 @@ class CategoriesController extends Controller
         $this->table = new Category();
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $categories=DB::table('categories')->get();
-        return view('index',['categories'=>$categories]);
+        $category=Category::paginate(4);
+
+        $product=getProductsByCategoryId($request['cat_id']);
+
+        return view('index',['categories'=>$categories,'cat'=>$category,'products'=>$product]);
     }
 
     /**
@@ -55,7 +59,7 @@ class CategoriesController extends Controller
     public function show($id)
     {
 //        $products = DB::select('select * from products where categoryId ='.$id);
-//        return view('partial.categories');
+//        return view('index');
     }
 
     /**

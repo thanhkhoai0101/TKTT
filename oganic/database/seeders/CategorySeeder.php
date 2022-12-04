@@ -28,13 +28,13 @@ class CategorySeeder extends Seeder
         ))->create([
             'ParentId'=>1
         ]);
-        Category::factory()->count(3)->state(new Sequence(
+        Category::factory()->count(2)->state(new Sequence(
             ['Name'=>'Fresh Onions'],
             ['Name'=>'Fresh Berries'],
         ))->create([
             'ParentId'=>2
         ]);
-        Category::factory()->count(2)->state(new Sequence(
+        Category::factory()->count(1)->state(new Sequence(
             ['Name'=>'Oatmeal'],
         ))->create([
             'ParentId'=>4
