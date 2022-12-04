@@ -1,5 +1,5 @@
 <?php
-$url = explode('/',$_SERVER['REQUEST_URI']);
+$url = explode('/', $_SERVER['REQUEST_URI']);
 
 ?>
 <header class="header">
@@ -9,8 +9,9 @@ $url = explode('/',$_SERVER['REQUEST_URI']);
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                            <li>Free Shipping for all Order of $99</li>
+                            <li><i class="fa fa-envelope text-success"></i></li>
+                            <li>Mua 999tr để chúng tôi freeship</li>
+
                         </ul>
                     </div>
                 </div>
@@ -31,9 +32,25 @@ $url = explode('/',$_SERVER['REQUEST_URI']);
                                 <li><a href="#">English</a></li>
                             </ul>
                         </div>
-                        <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
+                        <?php 
+                        if(!empty($data->Username)) {  ?>
+                      
+                        <div class="header__top__right__language">
+                            <img src="img/language.png" alt="">
+                            <div>  {{ isset($data->Username) ? 'Xin chao` '.$data->Username : 'Default' }}</div>
+                            <span class="arrow_carrot-down"></span>
+                            <ul>
+                              <li>   <a style="font-size: 15px" class="text text-warning" href="{{ route('logout') }}">Logout</a></li>
+                            </ul>
                         </div>
+                     
+                        <?php } else{ ?>
+
+                        <div class="header__top__right__auth">
+                            <a href="/cc/login"><i class="fa fa-user"></i> Login</a>
+                        </div>
+                        <?php } ?>
+
                     </div>
                 </div>
             </div>
@@ -49,14 +66,20 @@ $url = explode('/',$_SERVER['REQUEST_URI']);
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="<?=($url[1]=='')?'active':''?>"><a href="/">Home</a></li>
-                        <li class="<?=($url[1]=='shops')?'active':''?>"><a href="{{route('shops.index')}}">Shop</a></li>
+                        <li class="<?= $url[1] == '' ? 'active' : '' ?>"><a href="/">Home</a></li>
+                        <li class="<?= $url[1] == 'shops' ? 'active' : '' ?>"><a
+                                href="{{ route('shops.index') }}">Shop</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
-                                <li class="<?=($url[1]=='shop_details')?'active':''?>"><a href="#">Shop Details</a></li>
-                                <li class="<?=($url[1]=='shop_carts')?'active':''?>"><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                <li class="<?=($url[1]=='check_out')?'active':''?>"><a href="{{route('checkout')}}">Check Out</a></li>
-                                <li class="<?=($url[1]=='blog_details')?'active':''?>"><a href="./blog-details.html">Blog Details</a></li>
+                                <li class="<?= $url[1] == 'shop_details' ? 'active' : '' ?>"><a href="#">Shop
+                                        Details</a></li>
+                                <li class="<?= $url[1] == 'shop_carts' ? 'active' : '' ?>"><a
+                                        href="./shoping-cart.html">Shoping Cart</a></li>
+                                <li class="<?= $url[1] == 'check_out' ? 'active' : '' ?>"><a
+                                        href="{{ route('checkout') }}">Check Out</a></li>
+                                <li class="<?= $url[1] == 'blog_details' ? 'active' : '' ?>"><a
+                                        href="./blog-details.html">Blog Details</a></li>
+
                             </ul>
                         </li>
                         <li><a href="./blog.html">Blog</a></li>
