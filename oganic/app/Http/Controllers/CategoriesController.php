@@ -32,7 +32,7 @@ class CategoriesController extends Controller
         else{
             return view('index', compact('categories'));
         }
-     
+
     }
 
     /**
