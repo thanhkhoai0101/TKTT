@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
@@ -13,16 +16,23 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $table='';
+    private $table = '';
     public function __construct()
     {
         $this->table = new Category();
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories=DB::table('categories')->get();
-        return view('index',['categories'=>$categories]);
+        $categories = DB::table('categories')->get();
+        if (Session::has('loginId')){
+            $data = Customer::where('id', '=', Session::get('loginId'))->first();
+            return view('index', compact('categories', 'data'));
+        }
+        else{
+            return view('index', compact('categories'));
+        }
+     
     }
 
     /**
@@ -54,7 +64,6 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
