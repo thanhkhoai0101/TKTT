@@ -13,8 +13,9 @@ if (str_contains($url[1],'?')){
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                            <li>Free Shipping for all Order of $99</li>
+                            <li><i class="fa fa-envelope text-success"></i></li>
+                            <li>Mua 999tr để chúng tôi freeship</li>
+
                         </ul>
                     </div>
                 </div>
@@ -35,9 +36,25 @@ if (str_contains($url[1],'?')){
                                 <li><a href="#">English</a></li>
                             </ul>
                         </div>
-                        <div class="header__top__right__auth">
-                            <a href="#"><i class="fa fa-user"></i> Login</a>
-                        </div>
+                        <?php
+                        if(!empty($data->Username)) {  ?>
+
+                            <div class="header__top__right__language">
+                                <img src="img/language.png" alt="">
+                                <div>  {{ isset($data->Username) ? 'Xin chao` '.$data->Username : 'Default' }}</div>
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+                                    <li>   <a style="font-size: 15px" class="text text-warning" href="{{ route('logout') }}">Logout</a></li>
+                                </ul>
+                            </div>
+
+                        <?php } else{ ?>
+
+                            <div class="header__top__right__auth">
+                                <a href="/cc/login"><i class="fa fa-user"></i> Login</a>
+                            </div>
+                        <?php } ?>
+
                     </div>
                 </div>
             </div>
