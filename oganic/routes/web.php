@@ -27,7 +27,8 @@ Route::get('/users/checkout', function () {
 })->name('checkout');
 
 Route::prefix('customers')->name('customer.')->group(function(){
-    Route::get('/{username}',[CustomersController::class,'show']);
+    Route::get('/{username}',[CustomersController::class,'show'])->name('show');
+    Route::post('/{username}',[CustomersController::class,'update'])->name('update');
 });
 
 //Route::get('/shops',function (){

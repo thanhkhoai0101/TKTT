@@ -5,6 +5,7 @@ if(str_contains($url[1],'?'))
 else{
     $url[0]=$url[1];
 }
+
 ?>
 <section class="breadcrumb-section set-bg" data-setbg="{{asset('img/breadcrumb.jpg')}}">
     <div class="container">
@@ -14,7 +15,7 @@ else{
                     <h2><?=($url[0]=='shops')?'Organic Shop':(($url[1] == 'shop_carts') ? 'Shopping Cart' : '')?></h2>
                     <div class="breadcrumb__option">
                         <a href="/">Home</a>
-                        <span><?= ($url[0] == 'shops') ? 'Shops' : (($url[1] == 'shop_carts') ? 'Shopping Cart' : '') ?></span>
+                        <span><?= ($url[0] == 'shops') ? 'Shops' : (($url[1] == 'shop_carts') ? 'Shopping Cart' : $url[0]) ?></span>
                     </div>
                 </div>
             </div>

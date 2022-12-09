@@ -45,6 +45,7 @@ if (str_contains($url[1],'?')){
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
                                     <li>   <a style="font-size: 15px" class="text text-warning" href="{{ route('logout') }}">Logout</a></li>
+                                    <li>   <a style="font-size: 15px" class="text text-warning" href="{{ route('customer.show',['username'=>$data->Username]) }}">Information</a></li>
                                 </ul>
                             </div>
 
