@@ -17,9 +17,6 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $json=File::get("database/data/Image.json");
-        $countries = json_decode($json);
-
             Product::factory()->count(5)->state(new Sequence(
                 [
                     'Name'=>'Beef',
@@ -65,7 +62,7 @@ class ProductSeeder extends Seeder
                 ],
                 [
                     'Name'=>'Grapes',
-                    'Avatar'=>'product-3.jpg'
+                    'Avatar'=>'product-4.jpg'
                 ],
                 [
                     'Name'=>'Mangoes',
