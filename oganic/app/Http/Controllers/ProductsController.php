@@ -21,17 +21,30 @@ class ProductsController extends Controller
         $this->table=new Product();
     }
 
-    public function loadCategory($cat_id){
-        $products_Type = DB::select('select * from products where categoryId='.$cat_id);
-        return view('index',['products_type'=>$products_Type]);
-    }
 
-    public function index()
+//    public function loadCategory($cat_id){
+//        $products_Type = DB::select('select * from products where categoryId='.$cat_id);
+//        return view('index',['products_type'=>$products_Type]);
+//    }
+
+    public function index(Request $request)
     {
-        $products=Product::paginate(12);
-        $productsSale = DB::select('select * from products');
 
-        return view('shops.shop-gird',['products'=>$products,'productsSale'=>$productsSale]);
+        if($request['cat_id']==""){
+            $products=Product::paginate(12);
+        }else{
+            $products=Product::where('categoryId','=',$request['cat_id'])->paginate(12);
+        }
+        $productsSale = DB::select('select * from products where categoryId=1');
+
+        $categories=DB::table('categories')->get();
+
+
+        return view('shops.shop-gird',[
+            'products'=>$products,
+            'productsSale'=>$productsSale,
+            'categories'=>$categories,
+        ]);
     }
 //form index trong phan san pham products
     public function load(){
