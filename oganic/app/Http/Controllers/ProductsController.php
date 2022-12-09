@@ -6,6 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\returnCallback;
+
 class ProductsController extends Controller
 {
     /**
@@ -44,15 +46,24 @@ class ProductsController extends Controller
             'categories'=>$categories,
         ]);
     }
-
-    /**
+//form index trong phan san pham products
+    public function load(){
+        $product = DB::table('products as p')
+        ->select('p.Id','p.Name','p.Description','c.Name as cateName','p.SalePrice','p.Weight','p.StockQuantity','p.Avatar')
+        ->join('categories as c','c.id','=','p.CategoryId')->get();
+        return $product;
+    }
+///form index trong phan san pham products end
+    
+/**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        //tra ve view them san pham
+        return view('admin.Products.Create');
     }
 
     /**
@@ -63,7 +74,17 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+       DB::table('products')->insert([
+        "Name"=>$request->name,
+        "Description"=>$request->Description,
+        "SalePrice"=>$request->SalePrice,
+        "Weight"=>$request->Weight,
+        "StockQuantity"=>$request->StockQuantity,
+        "CategoryId"=>$request->CategoryId,
+        "Avatar"=>$request->Avatar,
+    ]);
+       return redirect()->route('admin.product.index');
     }
 
     /**
@@ -86,7 +107,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+     $stock =Product::find($id);
+     return view('admin.Products.Edit',['product'=>$stock]);
     }
 
     /**
@@ -96,9 +118,19 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request)
+    {   
+
+        DB::table('products')->where('id',$_POST['id'])->update([
+            "Name"=>$request->name,
+            "Description"=>$request->Description,
+            "SalePrice"=>$request->SalePrice,
+            "Weight"=>$request->Weight,
+            "StockQuantity"=>$request->StockQuantity,
+            "CategoryId"=>$request->CategoryId,
+            "Avatar"=>$request->Avatar,
+        ]);
+        return redirect()->route('admin.product.index');
     }
 
     /**
@@ -109,6 +141,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('products')->where('id',$id)->delete();
+        return redirect()->route('admin.product.index'); 
     }
 }
