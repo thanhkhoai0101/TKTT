@@ -37,6 +37,12 @@ class CategoriesController extends Controller
             return view('index', compact('categories','products','cat'));
         }
 
+        $categories=DB::table('categories')->get();
+        $category=Category::paginate(4);
+
+        $product=getProductsByCategoryId($request['cat_id']);
+
+        return view('index',['categories'=>$categories,'cat'=>$category,'products'=>$product]);
     }
 
     /**
