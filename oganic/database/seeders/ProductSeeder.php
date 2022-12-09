@@ -121,7 +121,7 @@ class ProductSeeder extends Seeder
                 ],
                 [
                     'Name'=>'Combo5',
-                    'Avatar'=>'product-17.jpeg'
+                    'Avatar'=>'product-18.jpeg'
                 ],
             ))->create([
                 'CategoryId'=>3
@@ -211,7 +211,7 @@ class ProductSeeder extends Seeder
                 ],
                 [
                     'Name'=>'Grapes',
-                    'Avatar'=>'product-3.jpg'
+                    'Avatar'=>'product-4.jpg'
                 ],
                 [
                     'Name'=>'Mangoes',

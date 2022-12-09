@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <lable>Tên tài khoản: </lable>
-                <input type="text" name="Username" value="{{$customer->Username}}">
+                <input type="text"  name="Username" value="{{$customer->Username}}">
             </div>
             <div class="form-group">
                 <lable>Mật khẩu: </lable>

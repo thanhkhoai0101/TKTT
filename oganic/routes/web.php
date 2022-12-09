@@ -16,7 +16,7 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::get('/', [CategoriesController::class,'index']);
+Route::get('/', [CategoriesController::class,'index'])->name('home');
 //Route::get('/', [CategoriesController::class,'show'])->name('categories.show');
 
 //Route::get('/index/{?id}', function () {
