@@ -18,13 +18,16 @@
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="#">
+                        <form action="{{route('searchAjax')}}" method="POST">
+                            @csrf
                             <div class="hero__search__categories">
                                 All Categories
-                                <span class="arrow_carrot-down"></span>
+                                {{-- <span class="arrow_carrot-down"></span> --}}
                             </div>
-                            <input type="text" placeholder="What do yo u need?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <input id="search-input" type="search" name="product_name" type="text" placeholder="What do yo u need?">
+                            <button  id="search-button" type="submit" class="site-btn">SEARCH</button>
+
+                         
                         </form>
                     </div>
                     <div class="hero__search__phone">
@@ -49,3 +52,12 @@
         </div>
     </div>
 </section>
+<script>
+    const searchButton = document.getElementById('search-button');
+const searchInput = document.getElementById('search-input');
+searchButton.addEventListener('click', () => {
+  const inputValue = searchInput.value;
+  alert(inputValue);
+});
+</script>
+

@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Employee;
+use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -53,27 +56,53 @@ class UserController extends Controller
             ]
         );
         $customer = Customer::where('Username', '=', $request->Username)->first();
-        if ($customer) {
-            if (Hash::check($request->Password, $customer->Password)) {
-            $request->session()->put('loginId',$customer->id);
+        $employees = Employee::where('Username', '=', $request->Username)->where('Status', '=', '1')->first();
+     
+        if ($customer || $employees) {
+            if ( $customer&&Hash::check($request->Password, $customer->Password)) {
+                $request->session()->put('loginId', $customer->id);
                 return redirect('/');
+            } else if ($employees &&$request->Password == $employees->Password) {
+                $request->session()->put('loginId', $employees->id);
+                return redirect('/cc/register');
             } else {
                 return back()->with('fail', 'This password is not matches');
             }
         } else {
             return back()->with('fail', 'This email is not registered');
         }
-    }
-    // public function dashBoard(){
 
-    //     $categories=DB::table('categories')->get();
-    //     return view('index',['categories'=>$categories]);
-    // }
-    public function logOut(){
-        if(Session::has('loginId')){
+        // if(auth()->attempt(array('Username'=>$request->Username,'Password'=>$request->Password))){
+        
+        // }
+    }
+
+    public function logOut()
+    {
+        if (Session::has('loginId')) {
             Session::pull('loginId');
-           return redirect('/cc/login');
+            return redirect('/cc/login');
         }
     }
-
+    public  function productListAjax()
+    {
+        $product = Product::select('Name')->where('Status', '1')->get();
+        $data = [];
+        foreach ($product as $item) {
+            $data[] = $item['Name'];
+        }
+        return $data;
+    }
+    public function searchAjax(Request $request)
+    {
+        $searchProduct = $request->product_name;
+        if ($searchProduct != " ") {
+            $product = Product::where('Name', 'LIKE', '%' . $searchProduct . '%')->first();
+            if ($product) {
+                return redirect('');
+            }
+        } else {
+            return redirect()->back();
+        }
+    }
 }

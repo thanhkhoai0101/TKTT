@@ -53,3 +53,6 @@ Route::get('/cc/login',[UserController::class,'showLogin'])->name('show-login');
 Route::post('/cc/takelogin',[UserController::class,'takeLogin'])->name('take-login');
 Route::get('/cc/logout',[UserController::class,'logOut'])->name('logout');
 // Route::get('/cc/dashboard',[UserController::class,'dashBoard']);
+
+Route::get('/cc/product/list',[UserController::class,'productListAjax'])->name('cc/product/list');
+Route::post('/cc/searchAjax',[UserController::class,'searchAjax'])->name('searchAjax');

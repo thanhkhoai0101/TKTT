@@ -19,6 +19,7 @@
                                 @if (Session::has('fail'))
                                 <div class=" alert alert-danger"> {{ Session::get('fail') }}</div>
                             @endif
+                
                                     <form action="{{ route('take-login') }}" method="POST">
                                     @csrf
                                         <div class="d-flex align-items-center mb-3 pb-1">
