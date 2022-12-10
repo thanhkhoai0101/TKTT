@@ -18,14 +18,19 @@
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="#">
+                        <form action="{{route('searchAjax')}}" method="POST">
+                            @csrf
                             <div class="hero__search__categories">
                                 All Categories
-                                <span class="arrow_carrot-down"></span>
+                                {{-- <span class="arrow_carrot-down"></span> --}}
                             </div>
-                            <input type="text" placeholder="What do yo u need?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <input id="search-input" type="search" name="product_name" type="text" required placeholder="What do yo u need?">
+                            <button  id="search-button" type="submit" class="site-btn">SEARCH</button>
+
+
+
                         </form>
+
                     </div>
                     <div class="hero__search__phone">
                         <div class="hero__search__phone__icon">
@@ -35,6 +40,17 @@
                             <h5>+65 11.188.888</h5>
                             <span>support 24/7 time</span>
                         </div>
+                    </div>
+                </div>
+                <div><span style="display: block">  @if (Session::has('status'))
+                    <div class=" alert alert-danger"> {{ Session::get('status') }}</div>
+                @endif</span></div>
+                <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                    <div class="hero__text">
+                        <span>FRUIT FRESH</span>
+                        <h2>Vegetable <br />100% Organic</h2>
+                        <p>Free Pickup and Delivery Available</p>
+                        <a href="#" class="primary-btn">SHOP NOW</a>
                     </div>
                 </div>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -101,3 +117,4 @@
         </div>
     </div>
 </section>
+
