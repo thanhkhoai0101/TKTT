@@ -24,11 +24,13 @@
                                 All Categories
                                 {{-- <span class="arrow_carrot-down"></span> --}}
                             </div>
-                            <input id="search-input" type="search" name="product_name" type="text" placeholder="What do yo u need?">
+                            <input id="search-input" type="search" name="product_name" type="text" required placeholder="What do yo u need?">
                             <button  id="search-button" type="submit" class="site-btn">SEARCH</button>
+                         
 
                          
                         </form>
+                     
                     </div>
                     <div class="hero__search__phone">
                         <div class="hero__search__phone__icon">
@@ -40,6 +42,9 @@
                         </div>
                     </div>
                 </div>
+                <div><span style="display: block">  @if (Session::has('status'))
+                    <div class=" alert alert-danger"> {{ Session::get('status') }}</div>
+                @endif</span></div>
                 <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
                     <div class="hero__text">
                         <span>FRUIT FRESH</span>
@@ -52,12 +57,4 @@
         </div>
     </div>
 </section>
-<script>
-    const searchButton = document.getElementById('search-button');
-const searchInput = document.getElementById('search-input');
-searchButton.addEventListener('click', () => {
-  const inputValue = searchInput.value;
-  alert(inputValue);
-});
-</script>
 

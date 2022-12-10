@@ -99,7 +99,10 @@ class UserController extends Controller
         if ($searchProduct != " ") {
             $product = Product::where('Name', 'LIKE', '%' . $searchProduct . '%')->first();
             if ($product) {
-                return redirect('');
+                return redirect('shops/'.$product->CategoryId.'/'.$searchProduct);
+            }
+            else{
+                return redirect()->back()->with('status','No product matches your search');
             }
         } else {
             return redirect()->back();
