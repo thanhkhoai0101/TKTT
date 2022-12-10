@@ -46,8 +46,7 @@ class ProductSeeder extends Seeder
                 [
                     'Name'=>'Tuna',
                     'Avatar'=>'product-21.jpeg',
-                ],
-
+                ]
             ))->create([
                 'CategoryId'=>1,
             ]);
