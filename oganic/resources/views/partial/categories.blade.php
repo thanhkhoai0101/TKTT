@@ -1,8 +1,8 @@
 <?php
-if ($_SERVER['QUERY_STRING']!=""){
-    $param=explode('=',$_SERVER['QUERY_STRING']);
-}else{
-    $param[1]='';
+$param = explode('/',$_SERVER['REQUEST_URI']);
+if (str_contains($param[1],'?')){
+    $param=explode('?',$param[1]);
+    $param[1]=$param[0];
 }
 
 ?>

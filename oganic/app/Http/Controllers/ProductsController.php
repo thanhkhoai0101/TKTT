@@ -29,7 +29,6 @@ class ProductsController extends Controller
 
     public function index(Request $request)
     {
-
         if($request['cat_id']==""){
             $products=Product::paginate(12);
         }else{
@@ -96,7 +95,13 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = DB::table('products')->find($id);
-        return view('shops.shop-details',['product'=>$product]);
+        $arr = explode('["',$product->Images);
+        $arr=explode('"]',$arr[1]);
+        $arr=explode(',"',$arr[0]);
+        $arr=explode('", "',$arr[0]);
+        $images=$arr;
+
+        return view('shops.shop-details',['product'=>$product,'images'=>$images]);
     }
 
     /**

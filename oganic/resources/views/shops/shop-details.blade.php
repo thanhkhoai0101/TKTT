@@ -17,18 +17,13 @@
                              src="{{asset('img/product')}}/{{$product->Avatar}}" alt="">
                     </div>
                     <div class="product__details__pic__slider owl-carousel">
+                        @foreach($images as $item)
+                            <img data-imgbigurl="{{asset('img/latest-product')}}/{{$item}}"
+                                 src="{{asset('img/latest-product')}}/{{$item}}" alt="" style="width:100px;height: 100px">
+                        @endforeach
 
-
-
-                        <img data-imgbigurl="{{asset('img/product/details/product-details-2.jpg')}}"
-                             src="{{asset('img/product/product-1.jpg')}}" alt="">
-                        <img data-imgbigurl="{{asset('img/product/details/product-details-3.jpg')}}"
-                             src="{{asset('img/product/details/thumb-2.jpg')}}" alt="">
-                        <img data-imgbigurl="{{asset('img/product/details/product-details-5.jpg')}}"
-                             src="{{asset('img/product/details/thumb-3.jpg')}}" alt="">
-                        <img data-imgbigurl="{{asset('img/product/details/product-details-4.jpg')}}"
-                             src="{{asset('img/product/details/thumb-4.jpg')}}" alt="">
                     </div>
+
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">

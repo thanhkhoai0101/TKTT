@@ -4,7 +4,6 @@ if (str_contains($url[1],'?')){
     $url=explode('?',$url[1]);
     $url[1]=$url[0];
 }
-
 ?>
 <header class="header">
     <div class="header__top">
@@ -45,6 +44,7 @@ if (str_contains($url[1],'?')){
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
                                     <li>   <a style="font-size: 15px" class="text text-warning" href="{{ route('logout') }}">Logout</a></li>
+                                    <li>   <a style="font-size: 15px" class="text text-warning" href="{{ route('customer.show',['username'=>$data->Username]) }}">Information</a></li>
                                 </ul>
                             </div>
 
@@ -74,7 +74,7 @@ if (str_contains($url[1],'?')){
                         <li class="<?=($url[1]=='shops')?'active':''?>"><a href="{{route('shops.index')}}">Shop</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="header__menu__dropdown">
-                                <li class="<?=($url[1]=='shop_carts')?'active':''?>"><a href="{{route('shop-carts')}}">Shoping Cart</a></li>
+                                <li class="<?=($url[1]=='cart')?'active':''?>"><a href="{{route('cart.index')}}">Shoping Cart</a></li>
                                 <li class="<?=($url[1]=='check_out')?'active':''?>"><a href="{{route('checkout')}}">Check Out</a></li>
                                 <li class="<?=($url[1]=='blog_details')?'active':''?>"><a href="./blog-details.html">Blog Details</a></li>
                             </ul>
@@ -88,7 +88,7 @@ if (str_contains($url[1],'?')){
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="{{route('cart.index')}}"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                     </ul>
                     <div class="header__cart__price">item: <span>$150.00</span></div>
                 </div>

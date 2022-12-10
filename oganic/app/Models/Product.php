@@ -9,5 +9,13 @@ use Illuminate\Support\Facades\DB;
 class Product extends Model
 {
     use HasFactory;
-       
+    protected $casts=[
+        'Images'=>'array',
+    ];
+    protected $fillable=[
+        'Images',
+        'SalePrice',
+        'StockQuantity',
+    ];
+
 }

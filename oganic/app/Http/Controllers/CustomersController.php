@@ -14,10 +14,32 @@ class CustomersController extends Controller
      * @param string $username
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
+
+
     public function show($username)
     {
+        $message=null;
         $customer = DB::table('customers')->where('Username',$username)->get();
-        return view('users.information.index',['customers'=>$customer]);
+        return view('users.information.index',['customers'=>$customer,'message'=>$message]);
+    }
+    public function update(Request $request,$username)
+    {
+        $customer = DB::table('customers')->where('Username',$username)
+            ->update([
+                'Name'=>$request->Name,
+                'Email'=>$request->Email,
+                'Username'=>$request->Username,
+                'Password'=>Hash::make($request->Password),
+                'Address'=>$request->Address,
+                'PhoneNumber'=>$request->PhoneNumber]);
+        if ($customer==1){
+            $message ='Update successfully';
+        }else{
+            $message = 'Update fail';
+        }
+        $customer = DB::table('customers')->where('Username',$username)->get();
+        return view('users.information.index',['customers'=>$customer,'message'=>$message]);
+
     }
 
     public function showRegister()
@@ -45,7 +67,7 @@ class CustomersController extends Controller
         $customer->PhoneNumber = $request->PhoneNumber;
         $res = $customer->save();
         if ($res == true) {
-            return back()->with('success', 'You have  registered successfuly');
+            return back()->with('success', 'You have  registered successfully');
         } else {
             return back()->with('fail', 'Some thing wrong');
         }

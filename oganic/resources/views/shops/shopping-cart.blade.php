@@ -22,72 +22,42 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($cartItems as $items)
                         <tr>
                             <td class="shoping__cart__item">
-                                <img src="img/cart/cart-1.jpg" alt="">
-                                <h5>Vegetable’s Package</h5>
+                                <img src="img/product/{{$items->attributes->image}}" alt="" style="width: 130px">
+                                <h5>{{$items->name}}</h5>
                             </td>
                             <td class="shoping__cart__price">
-                                $55.00
+                                ${{$items->price}}
                             </td>
                             <td class="shoping__cart__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
+
+                                <form action="{{route('cart.update-cart')}}" method="post" class="d-flex">
+                                    @csrf
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="number" value="{{$items->quantity}}" name="quantity">
+                                        </div>
                                     </div>
-                                </div>
+                                    <input type="hidden" name="id" value="{{$items->id}}">
+                                    <button class="btn"><span class="icon_loading" style="padding-right: 4px"></span>update</button>
+                                </form>
+
                             </td>
                             <td class="shoping__cart__total">
-                                $110.00
+                                ${{$items->price*$items->quantity}}
                             </td>
                             <td class="shoping__cart__item__close">
-                                <span class="icon_close"></span>
+                                <form action="{{ route('cart.remove') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $items->id }}" name="id">
+                                    <button class="btn"><span class="icon_close"></span></button>
+                                </form>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="shoping__cart__item">
-                                <img src="img/cart/cart-2.jpg" alt="">
-                                <h5>Fresh Garden Vegetable</h5>
-                            </td>
-                            <td class="shoping__cart__price">
-                                $39.00
-                            </td>
-                            <td class="shoping__cart__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="shoping__cart__total">
-                                $39.99
-                            </td>
-                            <td class="shoping__cart__item__close">
-                                <span class="icon_close"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="shoping__cart__item">
-                                <img src="img/cart/cart-3.jpg" alt="">
-                                <h5>Organic Bananas</h5>
-                            </td>
-                            <td class="shoping__cart__price">
-                                $69.00
-                            </td>
-                            <td class="shoping__cart__quantity">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="shoping__cart__total">
-                                $69.99
-                            </td>
-                            <td class="shoping__cart__item__close">
-                                <span class="icon_close"></span>
-                            </td>
-                        </tr>
+                        @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -95,10 +65,14 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <div class="shoping__cart__btns">
+                <div class="shoping__cart__btns d-flex justify-content-between">
                     <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                    <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                        Upadate Cart</a>
+
+                    <form action="{{route('cart.clear')}}" method="post">
+                        @csrf
+                        <button class="btn btn-danger primary-btn">Delete All</button>
+                    </form>
+
                 </div>
             </div>
             <div class="col-lg-6">
@@ -116,8 +90,7 @@
                 <div class="shoping__checkout">
                     <h5>Cart Total</h5>
                     <ul>
-                        <li>Subtotal <span>$454.98</span></li>
-                        <li>Total <span>$454.98</span></li>
+                        <li>Total <span>${{ Cart::getTotal()}}</span></li>
                     </ul>
                     <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                 </div>
