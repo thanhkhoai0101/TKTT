@@ -40,10 +40,10 @@ Route::prefix('customers')->name('customer.')->group(function(){
 
 
 
-Route::prefix('shops')->name('shops.')->group(function (){
-    Route::get('/',[ProductsController::class,'index'])->name('index');
-    Route::get('/shop-details/{id}',[ProductsController::class,'show'])->name('show');
-
+Route::prefix('shops')->name('shops.')->group(function () {
+    Route::get('/', [ProductsController::class, 'index'])->name('index');
+    Route::get('/shop-details/{id}', [ProductsController::class, 'show'])->name('show');
+});
 Route::prefix('cart')->name('cart.')->group(function (){
     Route::get('/',[CartsController::class,'index'])->name('index');
     Route::post('/add',[CartsController::class,'addToCart'])->name('add');
