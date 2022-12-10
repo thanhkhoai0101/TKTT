@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomersController;
 use Illuminate\Support\Facades\Route;
@@ -41,9 +42,22 @@ Route::prefix('shops')->name('shops.')->group(function (){
     Route::get('/',[ProductsController::class,'index'])->name('index');
     Route::get('/shop-details/{id}',[ProductsController::class,'show'])->name('show');
 });
-Route::get('shop_carts',function (){
-    return view('shops.shopping-cart');
-})->name('shop-carts');
+
+//Carts
+
+Route::prefix('cart')->name('cart.')->group(function (){
+    Route::get('/',[CartsController::class,'index'])->name('index');
+    Route::post('/add',[CartsController::class,'addToCart'])->name('add');
+    Route::post('/remote',[CartsController::class,'remove'])->name('remove');
+    Route::post('/clear',[CartsController::class,'clear'])->name('clear');
+    Route::post('/',[CartsController::class,'updateCart'])->name('update-cart');
+});
+
+//Route::get('/',[CartsController::class,'deleteAll'])->name('shop-carts-delete');
+
+
+
+
 Route::get('/{cat_id}',[ProductsController::class,'loadCategory'])->name('load-category');
 
 //

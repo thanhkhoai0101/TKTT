@@ -13,7 +13,9 @@ class Product extends Model
         'Images'=>'array',
     ];
     protected $fillable=[
-        'Images'
+        'Images',
+        'SalePrice',
+        'StockQuantity',
     ];
 
 }

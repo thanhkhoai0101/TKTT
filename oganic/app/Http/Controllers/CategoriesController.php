@@ -28,7 +28,9 @@ class CategoriesController extends Controller
     {
         $cat=Category::paginate(4);
         $products=getProductsByCategoryId($request['cat_id']);
-        $categories = DB::table('categories')->get();
+        $categories=DB::table('categories')->get();
+
+
         if (Session::has('loginId')){
             $data = Customer::where('id', '=', Session::get('loginId'))->first();
             return view('index', compact('categories', 'data','products','cat'));
@@ -36,13 +38,6 @@ class CategoriesController extends Controller
         else{
             return view('index', compact('categories','products','cat'));
         }
-
-        $categories=DB::table('categories')->get();
-        $category=Category::paginate(4);
-
-        $product=getProductsByCategoryId($request['cat_id']);
-
-        return view('index',['categories'=>$categories,'cat'=>$category,'products'=>$product]);
     }
 
     /**
