@@ -90,7 +90,7 @@ if (str_contains($url[1],'?')){
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                         <li><a href="{{route('cart.index')}}"><i class="fa fa-shopping-bag"></i> <span>{{Cart::getTotalQuantity()}}</span></a></li>
                     </ul>
-                    <div class="header__cart__price">item: <span>$150.00</span></div>
+                    <div class="header__cart__price"><span>${{ number_format(Cart::getTotal(),2) }}</span></div>
                 </div>
             </div>
         </div>

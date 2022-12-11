@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\Controller;
@@ -86,3 +87,13 @@ Route::resource('admin',\App\Http\Controllers\admin\AccountsController::class);
 
 Route::resource('orders',\App\Http\Controllers\OrdersController::class);
 
+Route::get('/cc/register',[UserController::class,'showRegister'])->name('show-register');
+Route::post('/cc/takeregister',[UserController::class,'takeRegister'])->name('take-register');
+
+Route::get('/cc/login',[UserController::class,'showLogin'])->name('show-login');
+Route::post('/cc/takelogin',[UserController::class,'takeLogin'])->name('take-login');
+Route::get('/cc/logout',[UserController::class,'logOut'])->name('logout');
+// Route::get('/cc/dashboard',[UserController::class,'dashBoard']);
+
+Route::get('/cc/product/list',[UserController::class,'productListAjax'])->name('cc/product/list');
+Route::post('/cc/searchAjax',[UserController::class,'searchAjax'])->name('searchAjax');

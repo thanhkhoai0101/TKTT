@@ -11,12 +11,17 @@
         <div class="checkout__input__checkbox">
             <label for="acc-or">
                 Create an account?
-                <input type="checkbox" name="account" id="acc-or">
+                @if(!empty(session('user')))
+                <input type="checkbox" disabled name="create_account" id="acc-or">
+                @else
+                <input type="checkbox" name="create_account" id="acc-or">
+                @endif
                 <span class="checkmark"></span>
             </label>
         </div>
         <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
             ut labore et dolore magna aliqua.</p>
+
 
         <button type="submit" class="site-btn">PLACE ORDER</button>
     </div>

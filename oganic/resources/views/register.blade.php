@@ -1,5 +1,7 @@
 @extends('layouts.index')
 @section('content')
+
+
     <section class="vh-75" style="background-color: #eee;">
         <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -22,7 +24,7 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label">Your Name</label>
                                                 <input type="text" class="form-control" name="Name"
-                                                    value="{{ old('Name') }}" />
+                                                    value="{{ old('Name')  }}" />
                                                 <span class="text-danger"> @error('Name')
                                                         {{ $message }}
                                                     @enderror

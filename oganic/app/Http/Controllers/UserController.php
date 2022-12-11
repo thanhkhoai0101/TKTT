@@ -39,7 +39,11 @@ class UserController extends Controller
         $customer->Address = $request->Address;
         $customer->PhoneNumber = $request->PhoneNumber;
         $res = $customer->save();
+
         if ($res == true) {
+            if($request->order==1){
+                return redirect()->route('orders.store');
+            }
             return back()->with('success', 'You have  registered successfuly');
         } else {
             return back()->with('fail', 'Some thing wrong');
@@ -64,6 +68,8 @@ class UserController extends Controller
         if ($customer || $employees) {
             if ( $customer&&Hash::check($request->Password, $customer->Password)) {
                 $request->session()->put('loginId', $customer->id);
+                session()->put('user',$customer);
+
                 return redirect('/');
             } else if ($employees &&$request->Password == $employees->Password) {
                 $request->session()->put('loginId', $employees->id);
@@ -84,6 +90,7 @@ class UserController extends Controller
     {
         if (Session::has('loginId')) {
             Session::pull('loginId');
+            session()->forget('user');
             return redirect('/cc/login');
         }
     }
