@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('StockQuantity');
             $table->unsignedBigInteger('CategoryId');
             $table->boolean('Status')->default(true);
+            $table->json('Images')->nullable();
 
             $table->timestamps();
             $table->foreign('CategoryId')->references('id')->on('categories')->onDelete('cascade');

@@ -51,8 +51,11 @@ if (str_contains($url[1],'?')){
                                 <ul>
                                     <li>   <a style="font-size: 15px" class="text text-warning" href="{{ route('logout') }}">Logout</a></li>
                                     <li>   <a style="font-size: 15px" class="text text-warning" href="{{ route('customer.show',['username'=>$data->Username]) }}">Information</a></li>
+<<<<<<< HEAD
                                     <li>   <a style="font-size: 15px" class="text text-warning" href="{{ route('history.buyHistory',['username'=>$data->Username]) }}">Buy History</a></li>
 
+=======
+>>>>>>> eba4f82375be0843e5520d47e487d3ea6e23f0c9
                                 </ul>
                             </div>
 

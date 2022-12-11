@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->dateTime('OrderDateTime');
-            $table->text('Note');
+            $table->text('Note')->nullable();
             $table->unsignedBigInteger('CustomerId');
             $table->boolean('Status')->default(true);
             $table->timestamps();

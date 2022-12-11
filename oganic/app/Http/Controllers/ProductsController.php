@@ -21,17 +21,29 @@ class ProductsController extends Controller
         $this->table=new Product();
     }
 
-    public function loadCategory($cat_id){
-        $products_Type = DB::select('select * from products where categoryId='.$cat_id);
-        return view('index',['products_type'=>$products_Type]);
-    }
 
-    public function index()
+//    public function loadCategory($cat_id){
+//        $products_Type = DB::select('select * from products where categoryId='.$cat_id);
+//        return view('index',['products_type'=>$products_Type]);
+//    }
+
+    public function index(Request $request)
     {
-        $products=Product::paginate(12);
-        $productsSale = DB::select('select * from products');
+        if($request['cat_id']==""){
+            $products=Product::paginate(12);
+        }else{
+            $products=Product::where('categoryId','=',$request['cat_id'])->paginate(12);
+        }
+        $productsSale = DB::select('select * from products where categoryId=1');
 
-        return view('shops.shop-gird',['products'=>$products,'productsSale'=>$productsSale]);
+        $categories=DB::table('categories')->get();
+
+
+        return view('shops.shop-gird',[
+            'products'=>$products,
+            'productsSale'=>$productsSale,
+            'categories'=>$categories,
+        ]);
     }
 //form index trong phan san pham products
     public function load(){
@@ -83,7 +95,13 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = DB::table('products')->find($id);
-        return view('shops.shop-details',['product'=>$product]);
+        $arr = explode('["',$product->Images);
+        $arr=explode('"]',$arr[1]);
+        $arr=explode(',"',$arr[0]);
+        $arr=explode('", "',$arr[0]);
+        $images=$arr;
+
+        return view('shops.shop-details',['product'=>$product,'images'=>$images]);
     }
 
     /**
@@ -126,9 +144,22 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteProduct()
     {
+        $id=$_GET['id'];
+      
         DB::table('products')->where('id',$id)->delete();
-        return redirect()->route('admin.product.index'); 
+        // sau khi xóa thì load dữ liệu mới 
+        $coustomernew = DB::table('products')->get();
+        return $coustomernew;
+    }
+    public  function productListAjax()
+    {
+        $product = Product::select('Name')->where('Status', '1')->get();
+        $data = [];
+        foreach ($product as $item) {
+            $data[] = $item['Name'];
+        }
+        return $data;
     }
 }
