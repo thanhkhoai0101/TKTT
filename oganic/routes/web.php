@@ -42,6 +42,7 @@ Route::prefix('shops')->name('shops.')->group(function (){
     Route::get('/',[ProductsController::class,'index'])->name('index');
     Route::get('/shop-details/{id}',[ProductsController::class,'show'])->name('show');
 });
+// Route::get('/{cat_id}',[ProductsController::class,'loadCategory'])->name('load-category');
 
 //Carts
 
@@ -52,13 +53,33 @@ Route::prefix('cart')->name('cart.')->group(function (){
     Route::post('/clear',[CartsController::class,'clear'])->name('clear');
     Route::post('/',[CartsController::class,'updateCart'])->name('update-cart');
 });
+Route::prefix('admin')->name('admin.')->group(function (){
+   Route::get('/',function(){
+    return view('admin.index');
+   })->name('index');
+   // lay san pham ban api// du lieu dc return tu productcontroler
+   Route::get('/api-ajax',[AdminProductsController::class,'load']);
+   //
 
-//Route::get('/',[CartsController::class,'deleteAll'])->name('shop-carts-delete');
 
 
 
 
 Route::get('/{cat_id}',[ProductsController::class,'loadCategory'])->name('load-category');
+   Route::name('product.')->prefix('product')->group(function(){
+        Route::get('/', function(){
+            return view('admin/Products/index');
+        })->name('index');
+//add create
+        Route::get('/Create', [AdminProductsController::class, 'create'])->name('create');
+        Route::post('/Create', [AdminProductsController::class, 'store'])->name('CreateConfirm');
+//chuaw xong delete
+        Route::delete('/{id}', [AdminProductsController::class, 'destroy']);
+//edit~update
+        Route::get('/edit/{id}', [AdminProductsController::class, 'edit',])->name('edit');
+        Route::post('/edit', [AdminProductsController::class, 'update'])->name('updateConfirm');
+   });
+});
 
 //
 //Route::prefix('admin')->name('admin.')->group(function (){
