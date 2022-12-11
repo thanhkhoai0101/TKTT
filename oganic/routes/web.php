@@ -29,6 +29,12 @@ Route::get('/users/checkout', function () {
 
 
 
+Route::prefix('history')->name('history.')->group(function(){
+    Route::get('/{username}',[OrderController::class,'show'])->name('show');
+    // Route::post('/{username}',[OrderController::class,'update'])->name('update');
+});
+
+
 Route::prefix('shops')->name('shops.')->group(function (){
     Route::get('/',[ProductsController::class,'index'])->name('index');
     Route::get('/shop-details/{id}',[ProductsController::class,'show'])->name('show');
