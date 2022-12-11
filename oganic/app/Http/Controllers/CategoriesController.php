@@ -33,7 +33,7 @@ class CategoriesController extends Controller
 
         if (isset($request->product_name))
         {
-            $products = Product::where('Name', 'LIKE', '%'.$request->product_name .'%')->paginate(8);
+            $products = Product::where('Name', 'LIKE', $request->product_name .'%')->paginate(8);
         }
         $categories=DB::table('categories')->get();
 

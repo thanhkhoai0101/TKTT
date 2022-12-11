@@ -1,4 +1,4 @@
-<div class="sidebar__item">
+<div class="sidebar__item" style="margin-top: 225px">
     <div class="latest-product__text">
         <h4>Latest Products</h4>
         <div class="latest-product__slider owl-carousel">

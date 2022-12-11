@@ -8,6 +8,7 @@
                         <span>All departments</span>
                     </div>
                     <ul>
+
                         @foreach($categories as $items)
                         <li><a href="?cat_id={{$items->id}}">{{$items->Name}}</a></li>
                         @endforeach
@@ -27,7 +28,7 @@
                             </div>
                             <input id="search-input" type="search" name="product_name" type="text" required placeholder="What do yo u need?">
                             <button  id="search-button" type="submit" class="site-btn">SEARCH</button>
-                            
+
                         </form>
 
                     </div>

@@ -41,15 +41,22 @@
 
                     </div>
                     <p>{{$product->Description}}</p>
-                    <div class="product__details__quantity">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1">
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="primary-btn">ADD TO CARD</a>
-                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                   <div class="d-flex">
+                       <form action="{{route('cart.add')}}" method="post">
+                           @csrf
+                           <input type="hidden" value="{{$product->id}}" name="id">
+                           <div class="product__details__quantity">
+                               <div class="quantity">
+                                   <div class="pro-qty">
+                                       <input type="text" value="1" name="quantity">
+                                   </div>
+                               </div>
+                           </div>
+                           <button class="btn primary-btn" style="margin-bottom: 5px">ADD TO CARD</button>
+                       </form>
+
+                       <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                   </div>
                     <ul>
                         <li><b>Availability</b> @if($product->StockQuantity!=0)In Stock @else  Out Stock @endif</li>
                         <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
