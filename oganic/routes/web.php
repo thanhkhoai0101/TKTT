@@ -8,6 +8,7 @@ use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\OrdersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +26,7 @@ Route::get('/', [CategoriesController::class,'index'])->name('home');
 //Route::get('/index/{?id}', function () {
 //    return view('index');
 //});
+Route::resource('orders',OrdersController::class);
 Route::get('/users/checkout',[\App\Http\Controllers\UserController::class,'checkout'])->name('checkout');
 
 Route::prefix('customers')->name('customer.')->group(function(){
