@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -86,10 +87,14 @@ class CustomersController extends Controller
             ]
         );
         $customer = Customer::where('Username', '=', $request->Username)->first();
-        if ($customer) {
-            if (Hash::check($request->Password, $customer->Password)) {
-                $request->session()->put('loginId',$customer->id);
+        $employees = Employee::where('Username', '=', $request->Username)->where('Status', '=', '1')->first();
+        if ($customer || $employees) {
+            if ( $customer&&Hash::check($request->Password, $customer->Password)) {
+                $request->session()->put('loginId', $customer->id);
                 return redirect('/');
+            } else if ($employees &&$request->Password == $employees->Password) {
+                $request->session()->put('loginId', $employees->id);
+                return redirect('/cc/register');
             } else {
                 return back()->with('fail', 'This password is not matches');
             }

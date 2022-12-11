@@ -78,8 +78,8 @@ Route::get('/{cat_id}',[ProductsController::class,'loadCategory'])->name('load-c
    });
 });
 
-Route::get('/cc/register',[UserController::class,'showRegister'])->name('show-register');
-Route::post('/cc/takeregister',[UserController::class,'takeRegister'])->name('take-register');
+Route::get('/cc/register',[CustomersController::class,'showRegister'])->name('show-register');
+Route::post('/cc/takeregister',[CustomersController::class,'takeRegister'])->name('take-register');
 
 Route::get('/cc/login',[CustomersController::class,'showLogin'])->name('show-login');
 Route::post('/cc/takelogin',[CustomersController::class,'takeLogin'])->name('take-login');
