@@ -17,18 +17,13 @@
                              src="{{asset('img/product')}}/{{$product->Avatar}}" alt="">
                     </div>
                     <div class="product__details__pic__slider owl-carousel">
+                        @foreach($images as $item)
+                            <img data-imgbigurl="{{asset('img/latest-product')}}/{{$item}}"
+                                 src="{{asset('img/latest-product')}}/{{$item}}" alt="" style="width:100px;height: 100px">
+                        @endforeach
 
-
-
-                        <img data-imgbigurl="{{asset('img/product/details/product-details-2.jpg')}}"
-                             src="{{asset('img/product/product-1.jpg')}}" alt="">
-                        <img data-imgbigurl="{{asset('img/product/details/product-details-3.jpg')}}"
-                             src="{{asset('img/product/details/thumb-2.jpg')}}" alt="">
-                        <img data-imgbigurl="{{asset('img/product/details/product-details-5.jpg')}}"
-                             src="{{asset('img/product/details/thumb-3.jpg')}}" alt="">
-                        <img data-imgbigurl="{{asset('img/product/details/product-details-4.jpg')}}"
-                             src="{{asset('img/product/details/thumb-4.jpg')}}" alt="">
                     </div>
+
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -46,15 +41,22 @@
 
                     </div>
                     <p>{{$product->Description}}</p>
-                    <div class="product__details__quantity">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1">
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="primary-btn">ADD TO CARD</a>
-                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                   <div class="d-flex">
+                       <form action="{{route('cart.add')}}" method="post">
+                           @csrf
+                           <input type="hidden" value="{{$product->id}}" name="id">
+                           <div class="product__details__quantity">
+                               <div class="quantity">
+                                   <div class="pro-qty">
+                                       <input type="text" value="1" name="quantity">
+                                   </div>
+                               </div>
+                           </div>
+                           <button class="btn primary-btn" style="margin-bottom: 5px">ADD TO CARD</button>
+                       </form>
+
+                       <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                   </div>
                     <ul>
                         <li><b>Availability</b> @if($product->StockQuantity!=0)In Stock @else  Out Stock @endif</li>
                         <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>

@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-    
+
 
             Product::factory()->count(5)->state(new Sequence(
                 [
@@ -84,22 +84,22 @@ class ProductSeeder extends Seeder
                 [
                     'Name'=>'Apple',
                     'Avatar'=>'tao.jpg',
-                    'Images'=>["tao-1.jpg","tao-2.jpg","tao-3.jpg","tao-4.jpg","tao-5.jpg"]   
+                    'Images'=>["tao-1.jpg","tao-2.jpg","tao-3.jpg","tao-4.jpg","tao-5.jpg"]
                 ],
                 [
                     'Name'=>'carrot',
                     'Avatar'=>'carot.jpg',
-                    'Images'=>["carot-1.jpg","carot-2.jpg","carot-3.jpg","carot-4.jpg","carot-5.jpg"]   
+                    'Images'=>["carot-1.jpg","carot-2.jpg","carot-3.jpg","carot-4.jpg","carot-5.jpg"]
                 ],
                 [
                     'Name'=>'Broccoli',
                     'Avatar'=>'suplo.jpg',
-                    'Images'=>["suplo-1.jpg","suplo-2.jpg","suplo-3.jpg","suplo-4.jpg","suplo-5.jpg"]   
+                    'Images'=>["suplo-1.jpg","suplo-2.jpg","suplo-3.jpg","suplo-4.jpg","suplo-5.jpg"]
                 ],
                 [
                     'Name'=>'Scallion',
                     'Avatar'=>'hanhla.jpg',
-                    'Images'=>["hanh-1.jpg","hanh-2.jpg","hanh-3.jpg","hanh-4.jpg","hanh-5.jpg"]   
+                    'Images'=>["hanh-1.jpg","hanh-2.jpg","hanh-3.jpg","hanh-4.jpg","hanh-5.jpg"]
                 ],
             ))->create([
                 'CategoryId'=>2
@@ -108,12 +108,12 @@ class ProductSeeder extends Seeder
                 [
                     'Name'=>'Grape juice',
                     'Avatar'=>'epnho-1.jpg',
-                    'Images'=>["epnho-1.jpg","epnho-2.jpg","epnho-3.jpg","epnho-4.jpg","epnho-5.jpg"]   
+                    'Images'=>["epnho-1.jpg","epnho-2.jpg","epnho-3.jpg","epnho-4.jpg","epnho-5.jpg"]
                 ],
                 [
                     'Name'=>'Orange juice',
                     'Avatar'=>'epcam-1.jpg',
-                    'Images'=>["epcam-1.jpg","epcam-2.jpg","epcam-3.jpg","epcam-4.jpg","epcam-5.jpg"] 
+                    'Images'=>["epcam-1.jpg","epcam-2.jpg","epcam-3.jpg","epcam-4.jpg","epcam-5.jpg"]
                 ],
                 [
                     'Name'=>'Combo1',
@@ -142,22 +142,22 @@ class ProductSeeder extends Seeder
                 [
                     'Name'=>'Hamburgers',
                     'Avatar'=>'hambeger.jpg',
-                    'Images'=>["hambeger-1.jpg","hambeger-2.jpg","hambeger-3.jpg","hambeger-4.jpg","hambeger-5.jpg"] 
+                    'Images'=>["hambeger-1.jpg","hambeger-2.jpg","hambeger-3.jpg","hambeger-4.jpg","hambeger-5.jpg"]
                 ],
                 [
                     'Name'=>'Fried chicken',
                     'Avatar'=>'garan.jpg',
-                    'Images'=>["garan-1.jpg","garan-2.jpg","garan-3.jpg","garan-4.jpg","garan-5.jpg"] 
+                    'Images'=>["garan-1.jpg","garan-2.jpg","garan-3.jpg","garan-4.jpg","garan-5.jpg"]
                 ],
                 [
                     'Name'=>'Cereal',
                     'Avatar'=>'ngucoc.jpg',
-                    'Images'=>["ngucoc-1.jpg","ngucoc-2.jpg","ngucoc-3.jpg","ngucoc-4.jpg","ngucoc-5.jpg"] 
+                    'Images'=>["ngucoc-1.jpg","ngucoc-2.jpg","ngucoc-3.jpg","ngucoc-4.jpg","ngucoc-5.jpg"]
                 ],
                 [
                     'Name'=>'Oatmeal',
                     'Avatar'=>'yenmach.jpg',
-                    'Images'=>["oat-1.jpg","oat-2.jpg","oat-3.jpg","oat-4.jpg","oat-5.jpg"] 
+                    'Images'=>["oat-1.jpg","oat-2.jpg","oat-3.jpg","oat-4.jpg","oat-5.jpg"]
                 ],
 
             ))->create([
@@ -250,7 +250,7 @@ class ProductSeeder extends Seeder
                 [
                     'Name'=>'Apple',
                     'Avatar'=>'tao.jpg',
-                    'Images'=>["tao-1.jpg","tao-2.jpg","tao-3.jpg","tao-4.jpg","tao-5.jpg"]   
+                    'Images'=>["tao-1.jpg","tao-2.jpg","tao-3.jpg","tao-4.jpg","tao-5.jpg"]
                 ],
 
             ))->create([
@@ -260,7 +260,7 @@ class ProductSeeder extends Seeder
                 [
                     'Name'=>'Oatmeal',
                     'Avatar'=>'yenmach.jpg',
-                    'Images'=>["oat-1.jpg","oat-2.jpg","oat-3.jpg","oat-4.jpg","oat-5.jpg"] 
+                    'Images'=>["oat-1.jpg","oat-2.jpg","oat-3.jpg","oat-4.jpg","oat-5.jpg"]
                 ],
             ))->create([
                 'CategoryId'=>9

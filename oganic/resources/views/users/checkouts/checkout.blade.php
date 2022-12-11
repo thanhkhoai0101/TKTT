@@ -5,9 +5,7 @@
 @endsection
 
 <!-- Hero Section Begin -->
-@section('hero')
-    @include('components.hero')
-@endsection
+
 <!-- Hero Section End -->
 
 <!--Content-->

@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Product;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
@@ -13,16 +18,28 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $table='';
+    private $table = '';
+
     public function __construct()
     {
         $this->table = new Category();
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $cat=Category::paginate(4);
+
+        $products=getProductsByCategoryId($request['cat_id']);
+
+        if (isset($request->product_name))
+        {
+            $products = Product::where('Name', 'LIKE', $request->product_name .'%')->paginate(8);
+        }
         $categories=DB::table('categories')->get();
-        return view('index',['categories'=>$categories]);
+
+
+            return view('index', compact('categories','products','cat'));
+
     }
 
     /**
@@ -54,7 +71,6 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -90,4 +106,5 @@ class CategoriesController extends Controller
     {
         //
     }
+
 }
