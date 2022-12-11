@@ -23,9 +23,7 @@ Route::get('/', [CategoriesController::class,'index'])->name('home');
 //Route::get('/index/{?id}', function () {
 //    return view('index');
 //});
-Route::get('/users/checkout', function () {
-    return view('users.checkouts.checkout');
-})->name('checkout');
+Route::get('/users/checkout',[\App\Http\Controllers\UserController::class,'checkout'])->name('checkout');
 
 Route::prefix('customers')->name('customer.')->group(function(){
     Route::get('/{username}',[CustomersController::class,'show'])->name('show');
@@ -85,4 +83,6 @@ Route::get('/{cat_id}',[ProductsController::class,'loadCategory'])->name('load-c
 //    Route::get('/')
 //});
 Route::resource('admin',\App\Http\Controllers\admin\AccountsController::class);
+
+Route::resource('orders',\App\Http\Controllers\OrdersController::class);
 

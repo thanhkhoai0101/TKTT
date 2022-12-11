@@ -16,6 +16,9 @@ class UserController extends Controller
     {
         return view('register');
     }
+
+
+
     public function takeRegister(Request $request)
     {
         $request->validate(

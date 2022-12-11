@@ -92,7 +92,7 @@
                     <ul>
                         <li>Total <span>${{ Cart::getTotal()}}</span></li>
                     </ul>
-                    <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    <a href="{{route('orders.create')}}" class="primary-btn">PROCEED TO CHECKOUT</a>
                 </div>
             </div>
         </div>
