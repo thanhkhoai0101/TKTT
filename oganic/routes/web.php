@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\admin\ProductsController as AdminProductsController;
 use App\Http\Controllers\Controller;
 /*
 |--------------------------------------------------------------------------
@@ -42,16 +42,33 @@ Route::prefix('admin')->name('admin.')->group(function (){
     return view('admin.index');
    })->name('index');
    // lay san pham ban api// du lieu dc return tu productcontroler
+<<<<<<< HEAD
    Route::get('/api-ajax',[ProductsController::class,'load']);
+=======
+   Route::get('/api-ajax',[AdminProductsController::class,'load']);
+   //
+
+>>>>>>> 0bad23ac946fb4c08e6d363032b1c396b8c5abb5
 
    Route::name('product.')->prefix('product')->group(function(){
         Route::get('/', function(){
             return view('admin/Products/index');
         })->name('index');
+<<<<<<< HEAD
         Route::get('/Create', [ProductsController::class, 'create'])->name('create');
         Route::post('/Create', [ProductsController::class, 'store'])->name('CreateConfirm');
         Route::get('/edit/{id}', [ProductsController::class, 'edit',])->name('edit');
         Route::post('/edit', [ProductsController::class, 'update'])->name('updateConfirm');
+=======
+//add create
+        Route::get('/Create', [AdminProductsController::class, 'create'])->name('create');
+        Route::post('/Create', [AdminProductsController::class, 'store'])->name('CreateConfirm');
+//chuaw xong delete
+        Route::delete('/{id}', [AdminProductsController::class, 'destroy']);
+//edit~update
+        Route::get('/edit/{id}', [AdminProductsController::class, 'edit',])->name('edit');
+        Route::post('/edit', [AdminProductsController::class, 'update'])->name('updateConfirm');
+>>>>>>> 0bad23ac946fb4c08e6d363032b1c396b8c5abb5
    });
    Route::get('/api',[AccountController::class,'loadTK']);
 
