@@ -4,6 +4,7 @@ use App\Http\Controllers\CartsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\Controller;
@@ -42,6 +43,7 @@ Route::prefix('shops')->name('shops.')->group(function (){
     Route::get('/shop-details/{id}',[ProductsController::class,'show'])->name('show');
 });
 
+
 //Carts
 
 Route::prefix('cart')->name('cart.')->group(function (){
@@ -68,16 +70,23 @@ Route::get('/{cat_id}',[ProductsController::class,'loadCategory'])->name('load-c
         Route::get('/', function(){
             return view('admin/Products/index');
         })->name('index');
-//add create
+
         Route::get('/Create', [ProductsController::class, 'create'])->name('create');
         Route::post('/Create', [ProductsController::class, 'store'])->name('CreateConfirm');
-//chuaw xong delete
-        Route::delete('/{id}', [ProductsController::class, 'destroy']);
-//edit~update
         Route::get('/edit/{id}', [ProductsController::class, 'edit',])->name('edit');
         Route::post('/edit', [ProductsController::class, 'update'])->name('updateConfirm');
+
+//add create
+        Route::get('/Create', [AdminProductsController::class, 'create'])->name('create');
+        Route::post('/Create', [AdminProductsController::class, 'store'])->name('CreateConfirm');
+//chuaw xong delete
+        Route::delete('/{id}', [AdminProductsController::class, 'destroy']);
+//edit~update
+        Route::get('/edit/{id}', [AdminProductsController::class, 'edit',])->name('edit');
+        Route::post('/edit', [AdminProductsController::class, 'update'])->name('updateConfirm');
+
    });
-});
+   Route::get('/api',[AccountController::class,'loadTK']);
 
 Route::get('/cc/register',[CustomersController::class,'showRegister'])->name('show-register');
 Route::post('/cc/takeregister',[CustomersController::class,'takeRegister'])->name('take-register');
@@ -102,3 +111,18 @@ Route::get('/cc/logout',[UserController::class,'logOut'])->name('logout');
 
 Route::get('/cc/product/list',[UserController::class,'productListAjax'])->name('cc/product/list');
 Route::post('/cc/searchAjax',[UserController::class,'searchAjax'])->name('searchAjax');
+   Route::name('account.')->prefix('account')->group(function(){
+
+        Route::get('/', function(){
+            return view('admin/Accounts/index');
+        })->name('index');
+
+        Route::get('/Create', [AccountController::class, 'create'])->name('create');
+        Route::post('/Create', [AccountController::class, 'store'])->name('CreateConfirm');
+        Route::get('/edit/{id}', [AccountController::class, 'edit',])->name('edit');
+        Route::post('/edit', [AccountController::class, 'update'])->name('updateConfirm');
+
+   });
+});
+Route::get('deleteproduct', [ProductsController::class,'deleteProduct']);
+Route::get('deleteitem', [AccountController::class,'destroy']);

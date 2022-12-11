@@ -11,24 +11,13 @@ function loaddulieu(data){
     '<td>'+data[index].StockQuantity+'</td>'+
     '<td>'+data[index].cateName+'</td>'+
     '<td><image src="../img/'+data[index].Avatar+'"</image></td>'+
-    '<td><button class="btn btn-danger btn-delete" value="'+data[index].Id+'">Xóa</button>'+
+    '<td><button class="btn btn-danger btn-delete" onclick="functiondelete('+data[index].Id+') " value="'+data[index].Id+'">Xóa</button>'+
       '<a href="product/edit/'+data[index].Id+'">Update</a>'+'</td>'+
    '</tr>'
   })
   return dulieu;
 }
-$(document).ready(function(){//HAM DC  viet trang dc load ddau tien, ajax goi den 1 noi nao do bang url va methot get 
-  $(document).on('click','.btn-delete',function(){
-    
-      var id = $(this).val();
-      $.ajax({
-        type: 'DELETE',
-        url: 'product/'+id,
-        dataType:'json',
-        success: function(response){
-        }
-      })
-  });
+$(document).ready(function(){
   $.ajax({
       url:'../admin/api-ajax',
       type:'get',//cung voi phuong thuc web.php 
@@ -39,3 +28,18 @@ $(document).ready(function(){//HAM DC  viet trang dc load ddau tien, ajax goi de
       }
     })
 })
+
+function functiondelete (e){
+  $.ajax({
+  url:'http://127.0.0.1:8000/deleteproduct',
+  type:'get',
+  data : {
+    id:e,//tên biết là id và value là 'e'
+  },
+  
+  success:function(coustomernew) {//dung foreach de + mang  duyet chuoi 
+    console.log(coustomernew)
+     $("#loadproduct").html(loaddulieu(coustomernew));
+  }
+})
+}

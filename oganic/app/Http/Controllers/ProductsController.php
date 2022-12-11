@@ -144,10 +144,14 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteProduct()
     {
+        $id=$_GET['id'];
+      
         DB::table('products')->where('id',$id)->delete();
-        return redirect()->route('admin.product.index'); 
+        // sau khi xóa thì load dữ liệu mới 
+        $coustomernew = DB::table('products')->get();
+        return $coustomernew;
     }
     public  function productListAjax()
     {
