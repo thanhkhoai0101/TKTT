@@ -73,7 +73,7 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
 
 
-Route::get('/{cat_id}',[ProductsController::class,'loadCategory'])->name('load-category');
+
    Route::name('product.')->prefix('product')->group(function(){
         Route::get('/', function(){
             return view('admin/Products/index');

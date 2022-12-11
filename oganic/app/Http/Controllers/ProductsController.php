@@ -22,10 +22,7 @@ class ProductsController extends Controller
     }
 
 
-//    public function loadCategory($cat_id){
-//        $products_Type = DB::select('select * from products where categoryId='.$cat_id);
-//        return view('index',['products_type'=>$products_Type]);
-//    }
+
 
     public function index(Request $request)
     {
@@ -53,7 +50,7 @@ class ProductsController extends Controller
         return $product;
     }
 ///form index trong phan san pham products end
-    
+
 /**
      * Show the form for creating a new resource.
      *
@@ -124,7 +121,7 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {   
+    {
 
         DB::table('products')->where('id',$_POST['id'])->update([
             "Name"=>$request->name,
@@ -147,9 +144,9 @@ class ProductsController extends Controller
     public function deleteProduct()
     {
         $id=$_GET['id'];
-      
+
         DB::table('products')->where('id',$id)->delete();
-        // sau khi xóa thì load dữ liệu mới 
+        // sau khi xóa thì load dữ liệu mới
         $coustomernew = DB::table('products')->get();
         return $coustomernew;
     }
