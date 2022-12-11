@@ -35,7 +35,7 @@ if (str_contains($url[1],'?')){
                                 <li><a href="#">English</a></li>
                             </ul>
                         </div>
-                        @php 
+                        @php
                         use App\Models\Customer;
                           if(Session::has('loginId') && Session::get('loginId') == true){
                               {{ $data = Customer::where('id', '=', Session::get('loginId'))->first();}}
@@ -57,7 +57,7 @@ if (str_contains($url[1],'?')){
                         <?php } else{ ?>
 
                             <div class="header__top__right__auth">
-                                <a href="/cc/login"><i class="fa fa-user"></i> Login</a>
+                                <a href="{{ route('show-login')}}"><i class="fa fa-user"></i> Login</a>
                             </div>
                         <?php } ?>
 

@@ -28,7 +28,7 @@ Route::get('/', [CategoriesController::class,'index'])->name('home');
 //});
 Route::resource('orders',OrdersController::class);
 Route::get('/users/checkout',[\App\Http\Controllers\UserController::class,'checkout'])->name('checkout');
-
+Route::get('/cc/register',[CustomersController::class,'showRegister'])->name('show-register');
 Route::prefix('customers')->name('customer.')->group(function(){
     Route::get('/{username}',[CustomersController::class,'show'])->name('show');
     Route::post('/{username}',[CustomersController::class,'update'])->name('update');
@@ -108,14 +108,6 @@ Route::get('/cc/product/list',[ProductsController::class,'productListAjax'])->na
 //});
 Route::resource('admin',\App\Http\Controllers\admin\AccountsController::class);
 Route::resource('orders',\App\Http\Controllers\OrdersController::class);
-
-Route::get('/cc/register',[UserController::class,'showRegister'])->name('show-register');
-Route::post('/cc/takeregister',[UserController::class,'takeRegister'])->name('take-register');
-
-Route::get('/cc/login',[UserController::class,'showLogin'])->name('show-login');
-Route::post('/cc/takelogin',[UserController::class,'takeLogin'])->name('take-login');
-Route::get('/cc/logout',[UserController::class,'logOut'])->name('logout');
-// Route::get('/cc/dashboard',[UserController::class,'dashBoard']);
 
 Route::get('/cc/product/list',[UserController::class,'productListAjax'])->name('cc/product/list');
 Route::post('/cc/searchAjax',[UserController::class,'searchAjax'])->name('searchAjax');
