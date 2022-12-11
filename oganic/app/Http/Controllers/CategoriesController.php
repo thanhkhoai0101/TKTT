@@ -28,20 +28,18 @@ class CategoriesController extends Controller
     public function index(Request $request)
     {
         $cat=Category::paginate(4);
+
         $products=getProductsByCategoryId($request['cat_id']);
+
         if (isset($request->product_name))
         {
             $products = Product::where('Name', 'LIKE', '%'.$request->product_name .'%')->paginate(8);
         }
         $categories=DB::table('categories')->get();
 
-        if (Session::has('loginId')){
-            $data = Customer::where('id', '=', Session::get('loginId'))->first();
-            return view('index', compact('categories', 'data','products','cat'));
-        }
-        else{
+
             return view('index', compact('categories','products','cat'));
-        }
+
     }
 
     /**

@@ -2,47 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Employee;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class CustomersController extends Controller
+class UserController extends Controller
 {
-    /**
-     * @param string $username
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-
-
-    public function show($username)
-    {
-        $message=null;
-        $customer = DB::table('customers')->where('Username',$username)->get();
-        return view('users.information.index',['customers'=>$customer,'message'=>$message]);
-    }
-    public function update(Request $request,$username)
-    {
-        $customer = DB::table('customers')->where('Username',$username)
-            ->update([
-                'Name'=>$request->Name,
-                'Email'=>$request->Email,
-                'Username'=>$request->Username,
-                'Password'=>Hash::make($request->Password),
-                'Address'=>$request->Address,
-                'PhoneNumber'=>$request->PhoneNumber]);
-        if ($customer==1){
-            $message ='Update successfully';
-        }else{
-            $message = 'Update fail';
-        }
-        $customer = DB::table('customers')->where('Username',$username)->get();
-        return view('users.information.index',['customers'=>$customer,'message'=>$message]);
-
-    }
-
     public function showRegister()
     {
         return view('register');
@@ -68,7 +37,7 @@ class CustomersController extends Controller
         $customer->PhoneNumber = $request->PhoneNumber;
         $res = $customer->save();
         if ($res == true) {
-            return back()->with('success', 'You have  registered successfully');
+            return back()->with('success', 'You have  registered successfuly');
         } else {
             return back()->with('fail', 'Some thing wrong');
         }
@@ -88,6 +57,7 @@ class CustomersController extends Controller
         );
         $customer = Customer::where('Username', '=', $request->Username)->first();
         $employees = Employee::where('Username', '=', $request->Username)->where('Status', '=', '1')->first();
+     
         if ($customer || $employees) {
             if ( $customer&&Hash::check($request->Password, $customer->Password)) {
                 $request->session()->put('loginId', $customer->id);
@@ -101,17 +71,43 @@ class CustomersController extends Controller
         } else {
             return back()->with('fail', 'This email is not registered');
         }
-    }
-    // public function dashBoard(){
 
-    //     $categories=DB::table('categories')->get();
-    //     return view('index',['categories'=>$categories]);
-    // }
-    public function logOut(){
-        if(Session::has('loginId')){
+        // if(auth()->attempt(array('Username'=>$request->Username,'Password'=>$request->Password))){
+        
+        // }
+    }
+
+    public function logOut()
+    {
+        if (Session::has('loginId')) {
             Session::pull('loginId');
             return redirect('/cc/login');
         }
     }
-
+    public  function productListAjax()
+    {
+        $product = Product::select('Name')->where('Status', '1')->get();
+        $data = [];
+        foreach ($product as $item) {
+            $data[] = $item['Name'];
+        }
+        return $data;
+    }
+    public function searchAjax(Request $request)
+    {
+        $searchProduct = $request->product_name;
+   
+        if ($searchProduct != " ") {
+            $product = Product::where('Name', 'LIKE', '%'.$searchProduct .'%');
+            if ($product) {
+              
+                return redirect('shops/'.$product->CategoryId.'/'.$product->id);
+            }
+            else{
+                return redirect()->back()->with('status','No product matches your search');
+            }
+        } else {
+            return redirect()->back();
+        }
+    }
 }
