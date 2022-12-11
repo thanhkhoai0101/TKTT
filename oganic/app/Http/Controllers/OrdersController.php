@@ -17,7 +17,26 @@ class OrdersController extends Controller
     {
         //
     }
- 
+
+    public function buyHistory(Request $request)
+    {
+        $message=null;
+        $order = DB::table('orders')->where('CustomerId',session('user')->id)->get();
+        return view('users.history.index',['orders'=>$order,'message'=> $message]);
+    }
+
+
+    public function order_Detail(Request $request)
+    {
+        $message=null;
+        $order_detail = DB::table('order_details')->join('products', 'order_details.ProductId', '=', 'products.id') 
+                                            ->join('orders', 'order_details.OrderId', '=', 'orders.id')
+                                            ->where('CustomerId',session('user')-id)-get();
+        return view('users.history.index',['order_details'=>$order_detail,'message'=>$message]);
+    }
+
+
+    
     /**
      * Show the form for creating a new resource.
      *
