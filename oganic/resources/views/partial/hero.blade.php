@@ -18,7 +18,7 @@
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-<!--                        <form action="{{route('searchAjax')}}" method="POST">-->
+
                         <form action="{{route('home')}}" method="get">
 
                             <div class="hero__search__categories">

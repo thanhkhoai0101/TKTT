@@ -5,8 +5,14 @@
             <div class="featured__item__pic set-bg" data-setbg="img/product/{{$items->Avatar}}">
                 <ul class="featured__item__pic__hover">
                     <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                    <li><a href="{{route('shops.show',['id'=> $items->id])}}"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a href="{{route('shops.show',['id'=> $items->id])}}"><i class="fa fa-eye"></i></a></li>
+                    <li><a href="">
+                        <form action="{{route('cart.add')}}" method="post">
+                            @csrf
+                            <input type="hidden" value="{{$items->id}}" name="id">
+                            <input type="hidden" value="1" name="quantity">
+                            <button class="btn" style="margin-bottom: 5px"><i class="fa fa-shopping-cart"></i></button>
+                        </form></li></a>
                 </ul>
             </div>
             <div class="featured__item__text">

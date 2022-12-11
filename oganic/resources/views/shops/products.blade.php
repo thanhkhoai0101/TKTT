@@ -7,12 +7,14 @@
                     <ul class="product__item__pic__hover">
                         <li><a href="{{route('shops.show',['id'=>$product->id])}}"><i class="fa fa-eye"></i></a></li>
                         <li>
-                            <form action="{{route('cart.add')}}" method="post">
-                                @csrf
-                                <input type="hidden" value="{{$product->id}}" name="id">
-                                <input type="hidden" value="1" name="quantity">
-                                <button class="btn"><i class="fa fa-shopping-cart"></i></button>
-                            </form>
+                            <a href="">
+                                <form action="{{route('cart.add')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" value="{{$product->id}}" name="id">
+                                    <input type="hidden" value="1" name="quantity">
+                                    <button class="btn" style="margin-bottom: 5px"><i class="fa fa-shopping-cart"></i></button>
+                                </form>
+                            </a>
                         </li>
                     </ul>
                 </div>
