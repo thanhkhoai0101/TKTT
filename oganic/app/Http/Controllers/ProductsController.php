@@ -122,9 +122,11 @@ class ProductsController extends Controller
      */
     public function update(Request $request)
     {
-
+        if (empty($request->Avatar)){
+            $request->Avatar='product-5.jpg';
+        }
         DB::table('products')->where('id',$_POST['id'])->update([
-            "Name"=>$request->name,
+            "Name"=>$request->Name,
             "Description"=>$request->Description,
             "SalePrice"=>$request->SalePrice,
             "Weight"=>$request->Weight,

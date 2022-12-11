@@ -56,7 +56,7 @@
         <div class="mb-3">
             <label class="form-label"  for="Avatar">Avatar </label>
             <input class="form-control form-control-sm"   type="file" name="Avatar" id="Avatar" value="{{$product->Avatar}}">
-        
+
         </div>
         <br>
         <button type="submit"  class="btn btn-primary ml-3 btn-success">Submit</button>
@@ -73,4 +73,4 @@
 <script src="{{asset('../js/demo/chart-area-demo.js')}}"></script>
 <script src="{{asset('../js/demo/chart-pie-demo.js')}}"></script>
 
-@endsection             
+@endsection

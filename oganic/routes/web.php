@@ -74,25 +74,15 @@ Route::prefix('admin')->name('admin.')->group(function (){
 
 
 
-   Route::name('product.')->prefix('product')->group(function(){
-        Route::get('/', function(){
-            return view('admin/Products/index');
-        })->name('index');
+   Route::name('product.')->prefix('product')->group(function() {
+       Route::get('/', function () {
+           return view('admin/Products/index');
+       })->name('index');
 
-        Route::get('/Create', [ProductsController::class, 'create'])->name('create');
-        Route::post('/Create', [ProductsController::class, 'store'])->name('CreateConfirm');
-        Route::get('/edit/{id}', [ProductsController::class, 'edit',])->name('edit');
-        Route::post('/edit', [ProductsController::class, 'update'])->name('updateConfirm');
-
-//add create
-        Route::get('/Create', [AdminProductsController::class, 'create'])->name('create');
-        Route::post('/Create', [AdminProductsController::class, 'store'])->name('CreateConfirm');
-//chuaw xong delete
-        Route::delete('/{id}', [AdminProductsController::class, 'destroy']);
-//edit~update
-        Route::get('/edit/{id}', [AdminProductsController::class, 'edit',])->name('edit');
-        Route::post('/edit', [AdminProductsController::class, 'update'])->name('updateConfirm');
-
+       Route::get('/Create', [ProductsController::class, 'create'])->name('create');
+       Route::post('/Create', [ProductsController::class, 'store'])->name('CreateConfirm');
+       Route::get('/edit/{id}', [ProductsController::class, 'edit',])->name('edit');
+       Route::post('/edit', [ProductsController::class, 'update'])->name('updateConfirm');
    });
    Route::get('/api',[AccountController::class,'loadTK']);
 

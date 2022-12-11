@@ -31,7 +31,7 @@
         </label>
         <br>
         <label  class="form-label" for="Email"> Email:
-            <input class="form-control" type="enail" name="Email" value="{{$account->Email}}">
+            <input class="form-control" type="email" name="Email" value="{{$account->Email}}">
         </label>
         <br>
         <button type="submit"  class="btn btn-primary ml-3 btn-success">Submit</button>
