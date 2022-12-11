@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1> thêm sản phẩm </h1>
+    <h1> sửa sản phẩm </h1>
 
     <div class="pull-right">
         {{-- <a class="btn btn-primary" href="{{ route('admin.product.edit') }}" enctype="multipart/form-data"> Back</a> --}}
@@ -19,7 +19,7 @@
          @csrf
          <input type="hidden" name="id" value="{{$product->id}}">
          <label class="form-label" for="Name"> Name:
-            <input class="form-control" type="text" name="name" value="{{$product->Name}}">
+            <input class="form-control" type="text" name="Name" value="{{$product->Name}}">
         </label>
         <br>
         <label class="form-label" for="Description"> Description:

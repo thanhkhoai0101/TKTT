@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\Controller;
@@ -33,7 +34,7 @@ Route::prefix('shops')->name('shops.')->group(function (){
     Route::get('/',[ProductsController::class,'index'])->name('index');
     Route::get('/shop-details/{id}',[ProductsController::class,'show'])->name('show');
 });
-// Route::get('/{cat_id}',[ProductsController::class,'loadCategory'])->name('load-category');
+
 
 
 Route::prefix('admin')->name('admin.')->group(function (){
@@ -42,21 +43,30 @@ Route::prefix('admin')->name('admin.')->group(function (){
    })->name('index');
    // lay san pham ban api// du lieu dc return tu productcontroler
    Route::get('/api-ajax',[ProductsController::class,'load']);
-   //
-
 
    Route::name('product.')->prefix('product')->group(function(){
         Route::get('/', function(){
             return view('admin/Products/index');
         })->name('index');
-//add create 
         Route::get('/Create', [ProductsController::class, 'create'])->name('create');
         Route::post('/Create', [ProductsController::class, 'store'])->name('CreateConfirm');
-//chuaw xong delete
-        Route::delete('/{id}', [ProductsController::class, 'destroy']);
-//edit~update
         Route::get('/edit/{id}', [ProductsController::class, 'edit',])->name('edit');
         Route::post('/edit', [ProductsController::class, 'update'])->name('updateConfirm');
    });
-});
+   Route::get('/api',[AccountController::class,'loadTK']);
 
+   Route::name('account.')->prefix('account')->group(function(){
+
+        Route::get('/', function(){
+            return view('admin/Accounts/index');
+        })->name('index');
+
+        Route::get('/Create', [AccountController::class, 'create'])->name('create');
+        Route::post('/Create', [AccountController::class, 'store'])->name('CreateConfirm');
+        Route::get('/edit/{id}', [AccountController::class, 'edit',])->name('edit');
+        Route::post('/edit', [AccountController::class, 'update'])->name('updateConfirm');
+       
+   });
+});
+Route::get('deleteproduct', [ProductsController::class,'deleteProduct']);
+Route::get('deleteitem', [AccountController::class,'destroy']);
