@@ -18,14 +18,18 @@
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action="#">
+
+                        <form action="{{route('home')}}" method="get">
+
                             <div class="hero__search__categories">
                                 All Categories
-                                <span class="arrow_carrot-down"></span>
+                                {{-- <span class="arrow_carrot-down"></span> --}}
                             </div>
-                            <input type="text" placeholder="What do yo u need?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <input id="search-input" type="search" name="product_name" type="text" required placeholder="What do yo u need?">
+                            <button  id="search-button" type="submit" class="site-btn">SEARCH</button>
+
                         </form>
+
                     </div>
                     <div class="hero__search__phone">
                         <div class="hero__search__phone__icon">
@@ -37,6 +41,9 @@
                         </div>
                     </div>
                 </div>
+                <div><span style="display: block">  @if (Session::has('status'))
+                    <div class=" alert alert-danger"> {{ Session::get('status') }}</div>
+                @endif</span></div>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -101,3 +108,4 @@
         </div>
     </div>
 </section>
+

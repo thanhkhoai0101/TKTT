@@ -9,13 +9,11 @@ use Illuminate\Support\Facades\DB;
 class Product extends Model
 {
     use HasFactory;
+    protected $table='products';
     protected $casts=[
         'Images'=>'array',
     ];
-    protected $fillable=[
-        'Images',
-        'SalePrice',
-        'StockQuantity',
-    ];
+    protected $fillable=['Name','Avatar','Description','SalePrice','Weight','StockQuantity'];
+
 
 }
