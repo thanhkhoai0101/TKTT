@@ -149,4 +149,13 @@ class ProductsController extends Controller
         DB::table('products')->where('id',$id)->delete();
         return redirect()->route('admin.product.index'); 
     }
+    public  function productListAjax()
+    {
+        $product = Product::select('Name')->where('Status', '1')->get();
+        $data = [];
+        foreach ($product as $item) {
+            $data[] = $item['Name'];
+        }
+        return $data;
+    }
 }

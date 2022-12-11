@@ -35,6 +35,12 @@ if (str_contains($url[1],'?')){
                                 <li><a href="#">English</a></li>
                             </ul>
                         </div>
+                        @php 
+                        use App\Models\Customer;
+                          if(Session::has('loginId') && Session::get('loginId') == true){
+                              {{ $data = Customer::where('id', '=', Session::get('loginId'))->first();}}
+                          }
+                        @endphp
                         <?php
                         if(!empty($data->Username)) {  ?>
 

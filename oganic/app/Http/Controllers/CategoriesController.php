@@ -38,13 +38,8 @@ class CategoriesController extends Controller
         $categories=DB::table('categories')->get();
 
 
-        if (Session::has('loginId')){
-            $data = Customer::where('id', '=', Session::get('loginId'))->first();
-            return view('index', compact('categories', 'data','products','cat'));
-        }
-        else{
             return view('index', compact('categories','products','cat'));
-        }
+        
     }
 
     /**

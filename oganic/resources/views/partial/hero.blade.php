@@ -27,7 +27,7 @@
                             </div>
                             <input id="search-input" type="search" name="product_name" type="text" required placeholder="What do yo u need?">
                             <button  id="search-button" type="submit" class="site-btn">SEARCH</button>
-
+                            
                         </form>
 
                     </div>
